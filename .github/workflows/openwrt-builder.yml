@@ -17,7 +17,7 @@ on:
 # ============================================================
 env:
   REPO_URL: https://github.com/fat4-alt/immortalwrt
-  REPO_BRANCH: master
+  REPO_BRANCH: openwrt-25.12
   CONFIG_FILE: .config
   DIY_SH: diy.sh
   FREE_SPACE: true
@@ -55,13 +55,13 @@ jobs:
 
     # --------------------------------------------------------
     # 步骤 3：初始化编译环境 (安装依赖)
+    # sudo apt update -y
+    # sudo apt full-upgrade -y
     # --------------------------------------------------------
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo apt update -y
-        sudo apt full-upgrade -y
         sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
