@@ -13,7 +13,6 @@ on:
 
 # ============================================================
 # 2. 全局环境变量 (Environment Variables) 
-# https://github.com/coolsnowwolf/lede
 # ============================================================
 env:
   REPO_URL: https://github.com/fat4-alt/immortalwrt
@@ -55,8 +54,6 @@ jobs:
 
     # --------------------------------------------------------
     # 步骤 3：初始化编译环境 (安装依赖)
-    # sudo apt update -y
-    # sudo apt full-upgrade -y
     # --------------------------------------------------------
     - name: Initialization environment
       env:
@@ -79,10 +76,6 @@ jobs:
 
     # --------------------------------------------------------
     # 步骤 5：加载自定义脚本 (DIY) 和更新 Feeds
-    # echo 'src-git small https://github.com/kenzok8/small' >> feeds.conf.default
-    # rm -rf ./package/feeds/helloworld/luci-app-ssr-plus
-    # rm -rf ./package/feeds/luci/luci-app-filetransfer
-    # rm -rf ./package/feeds/luci/luci-app-filebrowser
     # --------------------------------------------------------
     - name: Load custom feeds & Update feeds
       run: |
@@ -146,5 +139,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success'
       with:
-        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: ImmortalWrt-24.10_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
